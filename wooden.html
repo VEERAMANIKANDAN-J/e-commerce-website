@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wooden Products | Best Wooden</title>
+  <link rel="stylesheet" href="css/wooden.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Wooden Products</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="logout.html">Logout</a>
+    </nav>
+  </header>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <select id="priceFilter">
+      <option value="all">All Prices</option>
+      <option value="under2000">Under ₹2000</option>
+      <option value="under5000">Under ₹5000</option>
+    </select>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+
+  <div class="product-card" data-name="door" data-price="4500">
+    <img src="images/wooden_door.jpg" alt="Wooden Door">
+    <h3>Wooden Door</h3>
+    <p>₹4500</p>
+    <button class="add-btn" onclick="addToCart('Wooden Door', 4500, 'wooden_door.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Door', 4500, 'wooden_door.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="window" data-price="2800">
+    <img src="images/wooden_window.jpg" alt="Wooden Window">
+    <h3>Wooden Window</h3>
+    <p>₹2800</p>
+    <button class="add-btn" onclick="addToCart('Wooden Window', 2800, 'wooden_window.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Window', 2800, 'wooden_window.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="table" data-price="1800">
+    <img src="images/table.jpg" alt="Wooden Table">
+    <h3>Wooden Table</h3>
+    <p>₹1800</p>
+    <button class="add-btn" onclick="addToCart('Wooden Table', 1800, 'table.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Table', 1800, 'table.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="chair" data-price="1000">
+    <img src="images/chair.jpg" alt="Wooden Chair">
+    <h3>Wooden Chair</h3>
+    <p>₹1000</p>
+    <button class="add-btn" onclick="addToCart('Wooden Chair', 1000, 'chair.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Chair', 1000, 'chair.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="frame" data-price="500">
+    <img src="images/wooden_frame.jpg" alt="Wooden Frame">
+    <h3>Wooden Frame</h3>
+    <p>₹500</p>
+    <button class="add-btn" onclick="addToCart('Wooden Frame', 500, 'wooden_frame.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Frame', 500, 'wooden_frame.jpg')">Buy Now</button>
+  </div>
+
+  <!-- NEW ITEMS BELOW -->
+
+  <div class="product-card" data-name="bookshelf" data-price="3500">
+    <img src="images/wooden_bookshelf.jpg" alt="Wooden Bookshelf">
+    <h3>Wooden Bookshelf</h3>
+    <p>₹3500</p>
+    <button class="add-btn" onclick="addToCart('Wooden Bookshelf', 3500, 'bookshelf.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Bookshelf', 3500, 'bookshelf.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="sofa" data-price="7800">
+    <img src="images/wooden_sofa.jpg" alt="Wooden Sofa">
+    <h3>Wooden Sofa</h3>
+    <p>₹7800</p>
+    <button class="add-btn" onclick="addToCart('Wooden Sofa', 7800, 'wooden_sofa.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Sofa', 7800, 'wooden_sofa.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="dining" data-price="9500">
+    <img src="images/wooden_diningset.jpg" alt="Wooden Dining Set">
+    <h3>Wooden Dining Set</h3>
+    <p>₹9500</p>
+    <button class="add-btn" onclick="addToCart('Wooden Dining Set', 9500, 'dining_set.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Dining Set', 9500, 'dining_set.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="clock" data-price="1200">
+    <img src="images/wooden_clock.jpg" alt="Wooden Wall Clock">
+    <h3>Wooden Wall Clock</h3>
+    <p>₹1200</p>
+    <button class="add-btn" onclick="addToCart('Wooden Wall Clock', 1200, 'wooden_clock.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden Wall Clock', 1200, 'wooden_clock.jpg')">Buy Now</button>
+  </div>
+
+  <div class="product-card" data-name="tvstand" data-price="6200">
+    <img src="images/wooden_tv.jpg" alt="Wooden TV Stand">
+    <h3>Wooden TV Stand</h3>
+    <p>₹6200</p>
+    <button class="add-btn" onclick="addToCart('Wooden TV Stand', 6200, 'tv_stand.jpg')">Add to Cart</button>
+    <button class="buy-btn" onclick="buyNow('Wooden TV Stand', 6200, 'tv_stand.jpg')">Buy Now</button>
+  </div>
+
+</div>
+
+
+  <footer>
+    <p>Address: 123 Timber Street, Wood Town, India</p>
+    <p>&copy; 2025 Wooden Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function addToCart(name, price, image) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, image, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(name + " added to cart!");
+    }
+
+    function buyNow(name, price, image) {
+      localStorage.setItem("cart", JSON.stringify([{ name, price, image, quantity: 1 }]));
+      window.location.href = "cart.html";
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    const priceFilter = document.getElementById('priceFilter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function filterProducts() {
+      const searchText = searchInput.value.toLowerCase();
+      const priceOption = priceFilter.value;
+
+      productCards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        const price = parseInt(card.getAttribute('data-price'));
+        const matchSearch = name.includes(searchText);
+        const matchPrice =
+          priceOption === 'all' ||
+          (priceOption === 'under2000' && price <= 2000) ||
+          (priceOption === 'under5000' && price <= 5000);
+
+        if (matchSearch && matchPrice) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    priceFilter.addEventListener('change', filterProducts);
+  </script>
+</body>
+</html>

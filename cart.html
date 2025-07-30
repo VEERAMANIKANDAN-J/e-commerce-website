@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="css/cart.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="cart-container">
+    <h1><i class="fas fa-shopping-cart"></i> Your Cart</h1>
+
+    <div class="cart-actions">
+      <a href="wooden.html" class="btn-home">← Back to Home</a>
+      <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems">
+        <!-- JS will populate cart rows -->
+      </tbody>
+    </table>
+
+    <div class="total" id="grandTotal">Total: ₹0</div>
+    <button class="btn-checkout" onclick="proceedToPayment()">Proceed to Payment</button>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function populateCart() {
+      const cartTable = document.getElementById("cartItems");
+      cartTable.innerHTML = "";
+      let grandTotal = 0;
+
+      cart.forEach((item, index) => {
+        const total = item.price * item.quantity;
+        grandTotal += total;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td><img src="images/${item.image}" alt="${item.name}" /></td>
+          <td>${item.name}</td>
+          <td>₹${item.price}</td>
+          <td>
+            <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+          </td>
+          <td>₹${total}</td>
+          <td><button onclick="removeItem(${index})">Remove</button></td>
+        `;
+        cartTable.appendChild(row);
+      });
+
+      document.getElementById("grandTotal").innerText = `Total: ₹${grandTotal}`;
+    }
+
+    function updateQuantity(index, value) {
+      const quantity = parseInt(value);
+      if (quantity >= 1) {
+        cart[index].quantity = quantity;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        populateCart();
+      }
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      populateCart();
+    }
+
+    function clearCart() {
+      localStorage.removeItem("cart");
+      cart = [];
+      populateCart();
+    }
+
+    function proceedToPayment() {
+      alert("Redirecting to payment...");
+      window.location.href = "payment.html";
+    }
+
+    window.onload = populateCart;
+  </script>
+</body>
+</html>

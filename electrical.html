@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Electrical Products | Best Electrical</title>
+  <link rel="stylesheet" href="css/electrical.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header>
+    <h1><i class="fas fa-bolt"></i> Electrical Products</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="wooden.html">Wooden</a>
+      <a href="cart.html">Cart</a>
+      <a href="logout.html">Logout</a>
+    </nav>
+  </header>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="🔍 Search products...">
+    <select id="priceFilter">
+      <option value="all">All Prices</option>
+      <option value="under500">Under ₹500</option>
+      <option value="under1000">Under ₹1000</option>
+    </select>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+    <div class="product-card" data-name="wire" data-price="150">
+      <img src="images/wire.jpg" alt="Wire">
+      <h3>Electrical Wire</h3>
+      <p>₹150 / roll</p>
+      <button class="add-btn" onclick="addToCart('Electrical Wire', 150, 'wire.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Electrical Wire', 150, 'wire.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="switch" data-price="30">
+      <img src="images/switch.jpg" alt="Switch">
+      <h3>Switch</h3>
+      <p>₹30 / piece</p>
+      <button class="add-btn" onclick="addToCart('Switch', 30, 'switch.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Switch', 30, 'switch.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="socket" data-price="50">
+      <img src="images/socket.jpg" alt="Socket">
+      <h3>Socket</h3>
+      <p>₹50 / piece</p>
+      <button class="add-btn" onclick="addToCart('Socket', 50, 'socket.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Socket', 50, 'socket.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="mcb" data-price="200">
+      <img src="images/mcp.jpg" alt="MCB">
+      <h3>Mini MCB</h3>
+      <p>₹200 / piece</p>
+      <button class="add-btn" onclick="addToCart('Mini MCB', 200, 'mcp.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Mini MCB', 200, 'mcp.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="bulb" data-price="90">
+      <img src="images/ledbulb.jpg" alt="LED Bulb">
+      <h3>LED Bulb</h3>
+      <p>₹90 / piece</p>
+      <button class="add-btn" onclick="addToCart('LED Bulb', 90, 'ledbulb.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('LED Bulb', 90, 'ledbulb.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="fan" data-price="1500">
+      <img src="images/fan.jpg" alt="Ceiling Fan">
+      <h3>Ceiling Fan</h3>
+      <p>₹1500 / piece</p>
+      <button class="add-btn" onclick="addToCart('Ceiling Fan', 1500, 'fan.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Ceiling Fan', 1500, 'fan.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="tube" data-price="250">
+      <img src="images/tube.jpg" alt="Tube Light">
+      <h3>Tube Light</h3>
+      <p>₹250 / piece</p>
+      <button class="add-btn" onclick="addToCart('Tube Light', 250, 'tube.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Tube Light', 250, 'tube.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="extension" data-price="300">
+      <img src="images/extention.jpg" alt="Extension Box">
+      <h3>Extension Box</h3>
+      <p>₹300 / piece</p>
+      <button class="add-btn" onclick="addToCart('Extension Box', 300, 'extention.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Extension Box', 300, 'extention.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="inverter" data-price="5000">
+      <img src="images/inverter.jpg" alt="Inverter">
+      <h3>Inverter</h3>
+      <p>₹5000 / unit</p>
+      <button class="add-btn" onclick="addToCart('Inverter', 5000, 'inverter.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Inverter', 5000, 'inverter.jpg')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-name="iron" data-price="700">
+      <img src="images/iron.jpg" alt="Electric Iron">
+      <h3>Electric Iron</h3>
+      <p>₹700 / piece</p>
+      <button class="add-btn" onclick="addToCart('Electric Iron', 700, 'iron.jpg')">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow('Electric Iron', 700, 'iron.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+  <footer>
+    &copy; 2025 Best Electricals | All Rights Reserved | 📧 <a href="mailto:contact@bestelectricals.com">Contact Us</a>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const priceFilter = document.getElementById('priceFilter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function filterProducts() {
+      const searchText = searchInput.value.toLowerCase();
+      const priceOption = priceFilter.value;
+
+      productCards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        const price = parseInt(card.getAttribute('data-price'));
+
+        const matchSearch = name.includes(searchText);
+        const matchPrice = (priceOption === "all") ||
+                          (priceOption === "under500" && price <= 500) ||
+                          (priceOption === "under1000" && price <= 1000);
+
+        card.classList.toggle('hidden', !(matchSearch && matchPrice));
+      });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    priceFilter.addEventListener('change', filterProducts);
+
+    function addToCart(name, price, image) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, image, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+
+    function buyNow(name, price, image) {
+      let cart = [{ name, price, image, quantity: 1 }];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      window.location.href = "payment.html";
+    }
+  </script>
+
+</body>
+</html>
